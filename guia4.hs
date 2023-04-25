@@ -190,3 +190,45 @@ esFibonacciDesde :: Integer -> Integer -> Bool
 esFibonacciDesde n s | fibonacci s > n = False
                      | fibonacci s == n = True
                      | otherwise = esFibonacciDesde n (s + 1)
+
+-- Ejercicio 18)
+mayorDigitoPar :: Integer -> Integer
+mayorDigitoPar 0 = 0
+mayorDigitoPar n | cantidadDeDigitos n == 1 && not (esPar n) = -1
+                 | esPar (ultimoDigito n) && ultimoDigito n >= mayorDigitoPar (div n 10) = ultimoDigito n
+                 | otherwise = mayorDigitoPar (div n 10)
+
+esPar :: Integer -> Bool
+esPar n = mod n 2 == 0
+
+-- Ejercicio 19)
+
+esSumaInicialDePrimos :: Integer -> Bool
+esSumaInicialDePrimos n = restarPrimos n 2 == 0
+
+restarPrimos :: Integer -> Integer -> Integer
+restarPrimos n p | n < 2 = n
+                 | otherwise = restarPrimos (n - p) (primerPrimoDesde p)
+
+-- Ejercicio 20)
+
+sumaDivisoresDesde :: Int -> Int -> Int
+sumaDivisoresDesde n s | n == s = n
+                       | mod n s == 0 = s + sumaDivisoresDesde n (s + 1)
+                       | otherwise = sumaDivisoresDesde n (s + 1)
+
+sumaDivisores :: Int -> Int
+sumaDivisores n = sumaDivisoresDesde n 1
+
+minimo :: Int -> Int -> Int
+minimo x y | x <= y = x
+           | otherwise = y
+
+maximo :: Int -> Int -> Int
+maximo x y | x >= y = x
+           | otherwise = y           
+
+tomaValorMax :: Int -> Int -> Int
+tomaValorMax n1 n2 | n1 == n2 = n1
+                   | sumaDivisores (minimo n1 n2) >= sumaDivisores (tomaValorMax (minimo n1 n2 + 1) (maximo n1 n2)) = n1
+                   | otherwise = tomaValorMax (minimo n1 n2 + 1) (maximo n1 n2)
