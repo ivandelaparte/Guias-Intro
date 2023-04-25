@@ -1,5 +1,3 @@
-import System.Win32 (WIN32_FILE_ATTRIBUTE_DATA(fadCreationTime))
-import GHC.Exts.Heap (IndexTable)
 -- Ejercicio 1)
 
 fibonacci :: Integer -> Integer
@@ -232,3 +230,15 @@ tomaValorMax :: Int -> Int -> Int
 tomaValorMax n1 n2 | n1 == n2 = n1
                    | sumaDivisores (minimo n1 n2) >= sumaDivisores (tomaValorMax (minimo n1 n2 + 1) (maximo n1 n2)) = n1
                    | otherwise = tomaValorMax (minimo n1 n2 + 1) (maximo n1 n2)
+
+-- Ejercicio 21)
+
+pitagoras :: Integer -> Integer -> Integer -> Integer
+pitagoras m n r | m == 0 = pitagorasAux 0 n r
+                | otherwise = pitagorasAux m n r + pitagoras (m - 1) n r
+
+pitagorasAux :: Integer -> Integer -> Integer -> Integer
+pitagorasAux m n r | n == 0 && m^2 <= r^2 = 1
+                   | n == 0 = 0
+                   | n^2 + m^2 <= r^2 = 1 + pitagorasAux m (n - 1) r
+                   | otherwise = pitagorasAux m (n - 1) r
