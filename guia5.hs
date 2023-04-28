@@ -149,3 +149,55 @@ contarPalabras [] = 0
 contarPalabras [x] = 1
 contarPalabras (x:xs) | x == ' ' = 1 + contarPalabras xs
                       | otherwise = contarPalabras xs
+
+-- 3)
+palabraMasLarga :: [Char] -> [Char]
+palabraMasLarga [] = []
+palabraMasLarga [x] = [x]
+palabraMasLarga l | longitud (primeraPalabra l) >= longitud (palabraMasLarga (quitarPrimeraPalabra l)) = primeraPalabra l
+                  | otherwise = palabraMasLarga (quitarPrimeraPalabra l)
+
+
+longitudPalabra :: [Char] -> Integer
+longitudPalabra [] = 0
+longitudPalabra (x:xs) = 1 + longitudPalabra xs
+
+-- 4)
+palabras :: [Char] -> [[Char]]
+palabras [] = []
+palabras [x] = [[x]]
+palabras l = primeraPalabra l : palabras (quitarPrimeraPalabra l)
+
+primeraPalabra :: [Char] -> [Char]
+primeraPalabra [] = []
+primeraPalabra [x] = [x]
+primeraPalabra (' ':xs) = []
+primeraPalabra (x:xs) = x : primeraPalabra xs
+
+quitarPrimeraPalabra :: [Char] -> [Char]
+quitarPrimeraPalabra [] = []
+quitarPrimeraPalabra [x] = []
+quitarPrimeraPalabra (' ':xs) = xs
+quitarPrimeraPalabra (x:xs) = quitarPrimeraPalabra xs
+
+-- 5)
+aplanar :: [[Char]] -> [Char]
+aplanar [[]] = []
+aplanar [x] = x
+aplanar (x:xs) = x ++ aplanar xs
+
+-- 6)
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos [[]] = []
+aplanarConBlancos [x] = x
+aplanarConBlancos (x:xs) = x ++ [' '] ++ aplanarConBlancos xs
+
+-- 7)
+aplanarConNBlancos :: [[Char]] -> Integer -> [Char]
+aplanarConNBlancos [[]] _ = []
+aplanarConNBlancos [x] _ = x
+aplanarConNBlancos (x:xs) n = agregarNBlancos x n ++ aplanarConNBlancos xs n
+
+agregarNBlancos :: [Char] -> Integer -> [Char]
+agregarNBlancos l 0 = l
+agregarNBlancos l n = agregarNBlancos l (n - 1) ++ [' ']
