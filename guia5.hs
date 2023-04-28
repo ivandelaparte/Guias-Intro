@@ -201,3 +201,58 @@ aplanarConNBlancos (x:xs) n = agregarNBlancos x n ++ aplanarConNBlancos xs n
 agregarNBlancos :: [Char] -> Integer -> [Char]
 agregarNBlancos l 0 = l
 agregarNBlancos l n = agregarNBlancos l (n - 1) ++ [' ']
+
+-- Ejercicio 5)
+
+-- 1)
+nat2bin :: Integer -> [Integer]
+nat2bin 0 = [0]
+nat2bin 1 = [1]
+nat2bin n = nat2bin (div n 2) ++ [mod n 2]
+
+-- 2)
+bin2nat :: [Integer] -> Integer
+bin2nat [1] = 1
+bin2nat (x:xs) = x * 2 ^ (longitud (x:xs) - 1) + bin2nat xs
+
+-- 3)
+nat2hex :: Integer -> [Char]
+nat2hex n | n >= 0 && n <= 15 = [iesimoCaracter n ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']]
+          | div n 16 == 0 = nat2hex n
+          | otherwise = nat2hex (div n 16) ++ nat2hex (mod n 16)
+
+iesimoCaracter :: Integer -> [Char] -> Char
+iesimoCaracter 0 (x:xs) = x
+iesimoCaracter i (x:xs) = iesimoCaracter (i-1) xs
+
+-- 4)
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada [] = []
+sumaAcumulada [x] = [x]
+sumaAcumulada (x:y:xs) = x: sumaAcumulada (x+y:xs)
+
+-- 5)
+descomponerEnPrimos :: [Integer] -> [[Integer]]
+descomponerEnPrimos [] = []
+descomponerEnPrimos [x] = [descomponerEnPrimosInd x]
+descomponerEnPrimos (x:xs) = descomponerEnPrimosInd x : descomponerEnPrimos xs
+
+descomponerEnPrimosInd :: Integer -> [Integer]
+descomponerEnPrimosInd n = descomponerEnPrimosIndDesde n 2
+
+descomponerEnPrimosIndDesde :: Integer -> Integer -> [Integer]
+descomponerEnPrimosIndDesde n s | esPrimo n = [n]
+                                | mod n s == 0 = s : descomponerEnPrimosIndDesde (div n s) s
+                                | otherwise = descomponerEnPrimosIndDesde n (primerPrimoDesde s)
+
+primerPrimoDesde :: Integer -> Integer
+primerPrimoDesde n | esPrimo (n + 1) = n + 1
+                   |otherwise = primerPrimoDesde (n + 1)
+
+esPrimo :: Integer -> Bool
+esPrimo n = esPrimoDesde n 2
+
+esPrimoDesde :: Integer -> Integer -> Bool
+esPrimoDesde n s | s == n = True
+                 | mod n s == 0 = False
+                 | otherwise = esPrimoDesde n (s + 1)
