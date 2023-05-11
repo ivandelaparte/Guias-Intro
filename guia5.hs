@@ -256,3 +256,13 @@ esPrimoDesde :: Integer -> Integer -> Bool
 esPrimoDesde n s | s == n = True
                  | mod n s == 0 = False
                  | otherwise = esPrimoDesde n (s + 1)
+
+-- Ejercicio 6)
+
+type Set t = [t]
+
+-- 1)
+agregarATodos :: Integer -> Set (Set Integer) -> Set (Set Integer)
+agregarATodos n [a] = [n:a]
+agregarATodos n (x:xs) | pertenece n x = x : agregarATodos n xs 
+                       | otherwise = (n:x) : agregarATodos n xs
