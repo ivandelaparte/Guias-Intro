@@ -266,3 +266,17 @@ agregarATodos :: Integer -> Set (Set Integer) -> Set (Set Integer)
 agregarATodos n [a] = [n:a]
 agregarATodos n (x:xs) | pertenece n x = x : agregarATodos n xs 
                        | otherwise = (n:x) : agregarATodos n xs
+
+-- 2)
+partes :: Integer -> Set (Set Integer)
+partes 1 = [[],[1]]
+partes n = partes (n - 1) ++ agregarATodos n (partes (n - 1))
+
+-- 3)
+productoCartesiano :: Set Integer -> Set Integer -> Set (Integer, Integer)
+productoCartesiano [] _ = []
+productoCartesiano (s:ss) r = duplasNEnR s r ++ productoCartesiano ss r
+
+duplasNEnR :: Integer -> Set Integer -> Set (Integer, Integer)
+duplasNEnR _ [] = []
+duplasNEnR n (r:rs) = (n, r) : duplasNEnR n rs
