@@ -96,5 +96,91 @@ def peso_pino(altura: int) -> int:
     return peso
 
 # 2)
-def es_peso_util(peso: int) -> int:
+def es_peso_util(peso: int) -> bool:
     return (peso >= 400) and (peso <= 1000)
+
+# 3 y 4)
+def sirve_pino(altura: int) -> bool:
+    return es_peso_util(peso_pino(altura))
+
+# EJERCICIO 5)
+
+# 1)
+def devolver_el_doble_si_es_par(un_numero: int) -> int:
+    res: int = un_numero
+    if (un_numero % 2 == 0):
+        res *= 2
+    return res
+
+# 2)
+def devolver_valor_si_es_par_sino_el_que_sigue(un_numero: int) -> int:
+    res: int = un_numero
+    if (un_numero % 2 != 0):
+        res += 1
+    return res
+
+# 3)
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(un_numero: int) -> int:
+    res: int = un_numero
+    if (un_numero % 9 == 0):
+        res *= 3
+    elif (un_numero % 3 == 0):
+        res *= 2
+    return res
+
+# 4)
+def nombre_largo(nombre: str) -> str:
+    msg: str = ""
+    if (len(nombre) >= 5):
+        msg = "Tu nombre tiene muchas letras!"
+    else:
+        msg = "Tu nombre tiene menos de 5 caracteres"
+    return msg
+
+# 5)
+def trabajo_o_vacaciones(sexo: str, edad: int):
+    msg: str = ""
+    msg1: str = "Andá de vacaciones"
+    msg2: str = "Te toca trabajar"
+    if (sexo == "M"):
+        if (edad < 18) or (edad >= 65):
+            msg = msg1
+        else:
+            msg = msg2
+    else:
+        if (edad < 18) or (edad >= 60):
+            msg = msg1
+        else:
+            msg = msg2
+    return msg
+
+# EJERCICIO 6)
+
+# 1)
+def imprimir_nums_1_al_10():
+    i: int = 1
+    while (i <= 10):
+        print(i)
+        i += 1
+
+# 2)
+def imprimir_pares_entre_10_y_40():
+    i: int = 10
+    while (i <= 40):
+        print(i)
+        i += 2
+
+# 3)
+def imprimir_eco_10_veces():
+    i: int = 1
+    while (i <= 10):
+        print("eco")
+        i += 1
+
+# 4)
+def lanzamiento(num_cuenta: int):
+    i: int = num_cuenta
+    while (i >= 1):
+        print(i)
+        i -= 1
+    print("Despegue")
