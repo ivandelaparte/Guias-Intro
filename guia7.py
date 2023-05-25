@@ -184,3 +184,18 @@ def lanzamiento(num_cuenta: int):
         print(i)
         i -= 1
     print("Despegue")
+
+# 5)
+def viaje_temporal(partida: int, llegada: int):
+    current_year: int = partida
+    while (current_year > llegada):
+        current_year -= 1
+        print("Viajó un año al pasado, estamos en el año: " + str(current_year))
+
+# 6)
+def conocer_aristoteles(partida: int):
+    current_year: int = partida
+    while (current_year >= -373):
+        current_year -= 20
+        print("Viajó veinte años al pasado, estamos en el año: " + str(current_year))
+    print("Ya podés conocer a Aristóteles")
