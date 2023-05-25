@@ -1,3 +1,109 @@
+from typing import Tuple
+# EJERCICIO 1)
+
+# 1)
+def pertenece (s: list([int]), e: int) -> bool:
+    res: bool = False
+    for i in range (0, len(s), 1):
+        if (s[i] == e):
+            res = True
+    return res
+
+# 2)
+def divideATodos (s: list([int]), e: int) -> bool:
+    res: bool = True
+    for i in range (0, len(s), 1):
+        if (s[i] % e != 0):
+            res = False
+    return res
+
+# 3)
+def sumaTotal (s: list([int])) -> int:
+    res: int = 0
+    for i in range (0, len(s), 1):
+        res += s[i]
+    return res
+
+# 4)
+def ordenados (s: list([int])) -> bool:
+    res: bool = True
+    for i in range (0, len(s)-1, 1):
+        if (s[i] > s[i+1]):
+            res = False
+    return res
+
+# 5)
+def hay_palabra_larga (s: list([str])) -> bool:
+    res: bool = False
+    for i in range (0, len(s), 1):
+        if (len(s[i]) > 7):
+            res = True
+    return res
+
+# 6)
+def es_palindromo(s: str) -> str:
+    return (s == reverso(s))
+
+def reverso(s: str) -> str:
+    res: str = ""
+    for i in range (len(s)-1, -1, -1):
+        res += s[i]
+    return res
+
+# 7)
+def safe_password (p: str) -> str:
+    password_colour: int = ""
+    if (len(p)>8) and (tiene_mayus(p)) and (tiene_minus(p)) and (tiene_caract_esp(p)):
+        password_colour = "VERDE"
+    elif (len(p)<5):
+        password_colour = "ROJO"
+    else:
+        password_colour = "AMARILLO"
+    return password_colour
+
+def tiene_mayus (p: str) -> bool:
+    mayus: str = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    res: bool = False
+    for i in range (0, len(p), 1):
+        if (mayus.count(p[i]) > 0):
+            res = True
+    return res
+
+def tiene_minus (p: str) -> bool:
+    minus: str = "abcdefghijklmnñopqrstuvwxyz"
+    res: bool = False
+    for i in range (0, len(p), 1):
+        if (minus.count(p[i]) > 0):
+            res = True
+    return res
+
+def tiene_caract_esp (p: str) -> bool:
+    esp: str = ".,-_*+-$%&#"
+    res: bool = False
+    for i in range (0, len(p), 1):
+        if (esp.count(p[i]) > 0):
+            res = True
+    return res
+
+# 8)
+def saldo_actual (historial: list([Tuple[str, int]])) -> int:
+    saldo: int = 0
+    for i in range (0, len(historial), 1):
+        if (historial[i][0] == "I"):
+            saldo += historial[i][1]
+        if (historial[i][0] == "R"):
+            saldo -= historial[i][1]
+    return saldo
+
+# 9)
+def tres_vocales_distintas (p:str) -> bool:
+    res: str = True
+    vocales_posibles: list([str]) = ["A","E","I","O","U"]
+    for i in range (0, len(p), 1):
+        if (pertenece(vocales_posibles, p[i])):
+            vocales_posibles.remove(p[i])
+    return (len(vocales_posibles) <= 2)
+
 # EJERCICIO 2)
 
 # 1)
