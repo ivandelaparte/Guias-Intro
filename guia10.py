@@ -143,6 +143,14 @@ def generar_nros_al_azar (n: int, desde: int, hasta: int):
 
 # Ejercicio 9)
 from queue import LifoQueue as Pila
+def armar_pila_azarosa (n: int, desde: int, hasta: int):
+    lista = generar_nros_al_azar(n, desde, hasta)
+    pila_res = Pila()
+    for el in lista:
+        pila_res.put(el)
+    return pila_res
+
+# Ejercicio 10)
 def cantidad_elementos (p: Pila) -> int:
     contador: int = 0
     while (not p.empty()):
@@ -150,8 +158,8 @@ def cantidad_elementos (p: Pila) -> int:
         p.get()
     return contador
 
-# Ejercicio 10)
-def buscar_el_maximo (p: Pila) -> int:
+# Ejercicio 11)
+def buscar_el_maximo (p: Pila()) -> int:
     maximo: int = p.get()
     while (not p.empty()):
         actual: int = p.get()
