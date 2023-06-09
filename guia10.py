@@ -166,3 +166,18 @@ def buscar_el_maximo (p: Pila()) -> int:
         if actual > maximo:
             maximo = actual
     return maximo
+
+# Ejercicio 12)
+def esta_bien_balanceada (s: str) -> bool:
+    parentesis = Pila()
+    res: bool = True
+    for caracter in s:
+        if parentesis.empty() and caracter == ")":
+            res = False
+        elif caracter == "(":
+            parentesis.put(1)
+        elif caracter == ")":
+            parentesis.get()
+    if not parentesis.empty():
+        res = False
+    return res
