@@ -102,7 +102,8 @@ def agregar_frase_inicial (frase: str, nombre_archivo: str):
     archivo_editado.close()
 
 # Ejercicio 7)
-def promedio_estudiante (lu: str) -> float:
+def promedio_estudiante (lu: str, nombre_archivo: str) -> float:
+    archivo = open(nombre_archivo + ".txt")
     notas: list = []
     suma_notas: int = 0
     def obtener_nota (linea: str) -> float:
@@ -123,10 +124,19 @@ def promedio_estudiante (lu: str) -> float:
             if posicion_dato == 0:
                 lu_encontrada = lu_encontrada + caracter
         return lu_encontrada
-    for linea in alumnos.readlines():
+    for linea in archivo.readlines():
         if obtener_lu(linea) == lu:
             notas.append(obtener_nota(linea))
     for nota in notas:
         suma_notas += nota
     promedio = suma_notas / len(notas)
     return promedio
+
+# Ejercicio 8)
+from random import sample
+def generar_nros_al_azar (n: int, desde: int, hasta: int):
+    posibles_nros: list([int]) = []
+    for i in range (desde, hasta + 1, 1):
+        posibles_nros.append(i)
+    lista: list ([int]) = sample(posibles_nros, n)
+    return lista
