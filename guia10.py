@@ -140,3 +140,12 @@ def generar_nros_al_azar (n: int, desde: int, hasta: int):
         posibles_nros.append(i)
     lista: list ([int]) = sample(posibles_nros, n)
     return lista
+
+# Ejercicio 9)
+from queue import LifoQueue as Pila
+def cantidad_elementos (p: Pila) -> int:
+    contador: int = 0
+    while (not p.empty()):
+        contador += 1
+        p.get()
+    return contador
