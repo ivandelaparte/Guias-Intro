@@ -235,13 +235,3 @@ def pertenece (l: list, elem) -> bool:
         if (elem == i):
             res = True
     return res
-
-bolillero: Cola(int) = armar_secuencia_bingo()
-carton1: list([int]) = [1,2,3,4,5,6]
-carton2: list([int]) = [15,32,38,41,52,26]
-carton3: list([int]) = [1,22,93,84,56,66]
-
-print(bolillero.queue)
-print(carton3)
-print(jugar_carton_bingo(carton3, bolillero))
-print(jugar_carton_bingo(carton3, bolillero))
