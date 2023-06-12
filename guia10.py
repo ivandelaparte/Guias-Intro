@@ -134,7 +134,7 @@ def promedio_estudiante (lu: str, nombre_archivo: str) -> float:
 
 # Ejercicio 8)
 from random import sample
-def generar_nros_al_azar (n: int, desde: int, hasta: int):
+def generar_nros_al_azar (n: int, desde: int, hasta: int) -> list ([int]):
     posibles_nros: list([int]) = []
     for i in range (desde, hasta + 1, 1):
         posibles_nros.append(i)
@@ -181,3 +181,12 @@ def esta_bien_balanceada (s: str) -> bool:
     if not parentesis.empty():
         res = False
     return res
+
+# Ejercicio 13)
+from queue import Queue as Cola
+def armar_cola_azarosa (n: int, desde: int, hasta: int):
+    lista = generar_nros_al_azar(n, desde, hasta)
+    cola_res = Cola()
+    for el in lista:
+        cola_res.put(el)
+    return cola_res
