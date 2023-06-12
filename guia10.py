@@ -159,7 +159,7 @@ def cantidad_elementos_pila (p: Pila) -> int:
     return contador
 
 # Ejercicio 11)
-def buscar_el_maximo (p: Pila()) -> int:
+def buscar_el_maximo_pila (p: Pila()) -> int:
     maximo: int = p.get()
     while (not p.empty()):
         actual: int = p.get()
@@ -198,3 +198,12 @@ def cantidad_elementos_cola (c: Cola) -> int:
         contador += 1
         c.get()
     return contador
+
+# Ejercicio 15)
+def buscar_el_maximo_cola (c: Cola()) -> int:
+    maximo: int = c.get()
+    while (not c.empty()):
+        actual: int = c.get()
+        if actual > maximo:
+            maximo = actual
+    return maximo
