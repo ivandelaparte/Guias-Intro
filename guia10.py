@@ -207,3 +207,41 @@ def buscar_el_maximo_cola (c: Cola()) -> int:
         if actual > maximo:
             maximo = actual
     return maximo
+
+# Eejrcicio 16)
+def armar_secuencia_bingo () -> Cola(int):
+    numeros: list([int]) = []
+    for i in range (1,100,1):
+        numeros.append(i)
+    numeros_desordenados = sample(numeros, 99)
+    cola = Cola()
+    for numero in numeros_desordenados:
+        cola.put(numero)
+    return cola
+
+def jugar_carton_bingo (carton: list([int]), bolillero: Cola(int)) -> int:
+    numeros_restantes = carton.copy()
+    jugadas: int = 0
+    while (len(numeros_restantes) > 0):
+        jugadas += 1
+        numero_actual: int = bolillero.get()
+        if pertenece(numeros_restantes, numero_actual):
+            numeros_restantes.remove(numero_actual)
+    return jugadas
+    
+def pertenece (l: list, elem) -> bool:
+    res: bool = False
+    for i in l:
+        if (elem == i):
+            res = True
+    return res
+
+bolillero: Cola(int) = armar_secuencia_bingo()
+carton1: list([int]) = [1,2,3,4,5,6]
+carton2: list([int]) = [15,32,38,41,52,26]
+carton3: list([int]) = [1,22,93,84,56,66]
+
+print(bolillero.queue)
+print(carton3)
+print(jugar_carton_bingo(carton3, bolillero))
+print(jugar_carton_bingo(carton3, bolillero))
