@@ -151,7 +151,7 @@ def armar_pila_azarosa (n: int, desde: int, hasta: int):
     return pila_res
 
 # Ejercicio 10)
-def cantidad_elementos (p: Pila) -> int:
+def cantidad_elementos_pila (p: Pila) -> int:
     contador: int = 0
     while (not p.empty()):
         contador += 1
@@ -190,3 +190,11 @@ def armar_cola_azarosa (n: int, desde: int, hasta: int):
     for el in lista:
         cola_res.put(el)
     return cola_res
+
+# Ejercicio 14)
+def cantidad_elementos_cola (c: Cola) -> int:
+    contador: int = 0
+    while (not c.empty()):
+        contador += 1
+        c.get()
+    return contador
