@@ -235,3 +235,13 @@ def pertenece (l: list, elem) -> bool:
         if (elem == i):
             res = True
     return res
+
+# Ejercicio 17)
+from typing import Tuple
+def n_pacientes_urgentes (c: Cola((int, str, str))) -> int:
+    urgentes: int = 0
+    while (not c.empty()):
+        paciente_actual: Tuple(int, str, str) = c.get()
+        if (paciente_actual[0] < 4):
+            urgentes += 1
+    return urgentes
