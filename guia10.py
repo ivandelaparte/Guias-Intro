@@ -209,6 +209,8 @@ def buscar_el_maximo_cola (c: Cola()) -> int:
     return maximo
 
 # Eejrcicio 16)
+
+# 1)
 def armar_secuencia_bingo () -> Cola(int):
     numeros: list([int]) = []
     for i in range (1,100,1):
@@ -219,6 +221,7 @@ def armar_secuencia_bingo () -> Cola(int):
         cola.put(numero)
     return cola
 
+# 2)
 def jugar_carton_bingo (carton: list([int]), bolillero: Cola(int)) -> int:
     numeros_restantes = carton.copy()
     jugadas: int = 0
@@ -245,3 +248,45 @@ def n_pacientes_urgentes (c: Cola((int, str, str))) -> int:
         if (paciente_actual[0] < 4):
             urgentes += 1
     return urgentes
+
+# Ejercicio 18)
+def agrupar_por_longitud (nombre_archivo: str) -> dict:
+    archivo = open(nombre_archivo + ".txt")
+    lista_palabras: list([str]) = []
+    for linea in archivo.readlines():
+        linea_sin_saltos = linea.rstrip("\n")
+        lista_palabras += palabras(linea_sin_saltos)
+    diccionario: dict = {}
+    for palabra in lista_palabras:
+        if (pertenece(diccionario.keys(), len(palabra))):
+            diccionario[len(palabra)] += 1
+        else:
+            diccionario[len(palabra)] = 1
+    archivo.close()
+    return diccionario
+
+def palabras (linea: str) -> list([str]):
+    lista: list([str]) = []
+    palabra_actual: str = ""
+    linea_actual = linea
+    if (not linea_vacia(linea_actual)):
+        while (linea_actual[0] == " "):
+            linea_actual = linea_actual[1::]
+        for i in range(0, len(linea_actual) - 1, 1):
+            if (linea_actual[i] != " " and linea_actual[i + 1] != " "):
+                palabra_actual += linea_actual[i]
+            elif (linea_actual[i] != " " and linea_actual[i + 1] == " "):
+                palabra_actual += linea_actual[i]
+                lista.append(palabra_actual)
+                palabra_actual = ""
+        if linea_actual[len(linea_actual) - 1] != " ":
+            palabra_actual += linea_actual[len(linea_actual) - 1]
+        lista.append(palabra_actual)
+    return lista
+
+def linea_vacia (linea: str) -> bool:
+    res = True
+    for caracter in linea:
+        if (caracter != "") and (caracter != " "):
+            res = False
+    return res
